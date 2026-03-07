@@ -1,1 +1,59 @@
+how to createa a VM 
+creta and atached disk 
+swap disk 
+take a backup 
+resize the VM 
+take a snapshot
+add server into the patching 
+add server into the monitoring 
+create bastion to login serer 
+patch the server 
+expand the disk size 
+create a alerts rule in azure 
+reservered the servers size 
+quota managents 
+auto start and stop the server 
+decommisioning the server 
+add tags to the servers 
+assigned the RBAC role 
+create a NSG rule 
+install and update the require extention like AMA 
+Licensing 
+check the azure advisory and try to finx the recommandtions 
+apply the resouce lock 
+set the availabilty set and availablity zone 
+unable system and user identity 
+onborod the server into the microsoft defender cloud 
+applay disaaster recovery 
+check the restore point and delete it if no requre 
+run some basic commands via run commands 
+check one time update if require 
+applay policy 
+using the logs you can get data like heartbeat , tables which has monitoing unable 
+workbook ?????/
+validate the server resouce health 
+check the server status using boot digbnostic 
+take a serial console ????
+Reset the admin password 
+connection trobleshoot 
+VM redeploy and reaaply 
+Create a support case with MS 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
