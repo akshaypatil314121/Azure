@@ -1,0 +1,15 @@
+Go to Azure Portal → Navigate to Virtual Machines → Select your VM.
+
+In the VM settings, click Disks.
+
+Click + Add data disk.
+
+Choose Create disk (for a new disk) or Select existing disk.
+
+Configure Name, Size, Type (Standard HDD/SSD, Premium SSD).
+
+Click Save → Azure will attach the disk.
+
+Initialize inside VM:
+
+Windows VM: Use Disk Management (diskmgmt.msc) to bring the disk online, initialize, and format.
