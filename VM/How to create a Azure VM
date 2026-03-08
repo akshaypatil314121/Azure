@@ -1,27 +1,81 @@
-Sign in to the Azure Portal.
+SOP: How to Create an Azure Virtual Machine (VM)
+🔹 Prerequisites
+Active Azure subscription
 
-Navigate to Virtual Machines → click Create → Azure Virtual Machine.
+Access to Azure Portal
 
-Basics Tab:
+Basic knowledge of VM requirements (OS, size, region)
 
- Subscription: Select your Azure subscription.
+🔹 Procedure
+Step 1: Sign in
+Go to portal.azure.com.
 
- Resource Group: Create or choose an existing one.
+Log in with your Azure account credentials.
 
- VM Name: Enter a unique name.
+Step 2: Navigate to Virtual Machines
+In the left-hand menu, click Virtual Machines.
 
- Region: Choose closest to Pune (e.g., Central India).
+Select Create → Azure Virtual Machine.
 
- Image: Select OS (Windows Server, Ubuntu, etc.).
+Step 3: Basics Tab
+Subscription: Choose your subscription.
 
- Size: Pick based on CPU/RAM needs.
+Resource Group: Select or create one.
 
- Authentication: Choose Password or SSH key.
+VM Name: Enter a unique name.
 
-Disks Tab: Select OS disk type (Standard SSD, Premium SSD).
+Region: Pick the closest region (e.g., Central India).
 
-Networking Tab: Configure virtual network, subnet, and public IP.
+Image: Select OS (Windows Server, Ubuntu, etc.).
 
-Management Tab: Enable monitoring, auto-shutdown if needed.
+Size: Choose based on CPU/RAM needs.
 
-Review + Create: Validate settings → click Create
+Authentication: Select Password or SSH Key.
+
+Step 4: Disks Tab
+Choose OS disk type (Premium SSD, Standard SSD, HDD).
+
+Add data disks if required.
+
+Step 5: Networking Tab
+Select or create a Virtual Network and Subnet.
+
+Assign a Public IP if external access is needed.
+
+Configure inbound port rules (RDP for Windows, SSH for Linux).
+
+Step 6: Management Tab
+Enable Auto-shutdown to save costs.
+
+Configure Backup policies if needed.
+
+Enable Boot diagnostics for troubleshooting.
+
+Step 7: Monitoring Tab
+Enable Azure Monitor.
+
+Connect to a Log Analytics workspace.
+
+Turn on VM Insights for performance monitoring.
+
+Step 8: Advanced Tab
+Add VM extensions (e.g., antivirus, custom scripts).
+
+Provide custom data (cloud-init, PowerShell).
+
+Configure dedicated host if required.
+
+Step 9: Tags Tab
+Add tags for organization (e.g., Environment: Test, Owner: DevTeam).
+
+Step 10: Review + Create
+Azure validates your configuration.
+
+If validation passes, click Create.
+
+Deployment begins and VM is provisioned.
+
+Step 11: Access the VM
+Windows VM: Connect via Remote Desktop (RDP).
+
+Linux VM: Connect via SSH using terminal.
