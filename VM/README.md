@@ -1,10 +1,10 @@
-# Azure Virtual Machine Operations
+# Azure Windows Virtual Machine Operations
 
 This document provides step-by-step Standard Operating Procedures (SOPs) for common Azure VM tasks. Use it as a quick reference guide.
 
 ---
 
-## 1. Create a VM
+## 1. Create a VM on portal
 - Go to [Azure Portal](https://portal.azure.com).
 - Navigate to **Virtual Machines** → **Create**.
 - Fill in **Basics, Disks, Networking, Management, Monitoring, Advanced, Tags**.
