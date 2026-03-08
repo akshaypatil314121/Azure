@@ -15,14 +15,18 @@ This document provides step-by-step Standard Operating Procedures (SOPs) for com
 ## 2. Create and Attach Disk
 - Open VM → **Disks** → **+ Add data disk**.
 - Choose **Create disk** or **Select existing disk**.
-- Save and initialize inside the VM OS.
+- Save and Initialize Disk** → RDP → Disk Management → Initialize → Format.
 
 ---
 
 ## 3. Swap Disk
-- Detach old disk from VM.
-- Attach new disk.
-- Update OS mount points or drive letters.
+- Stop/deallocate the VM.
+- Go to **Virtual Machines** → select your VM.
+- In the left menu, click **Disks**.
+- Under **OS Disk**, click **Swap OS Disk**.
+- Select the replacement managed disk.
+- Save changes.
+- Start the VM again.
 
 ---
 
