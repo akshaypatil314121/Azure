@@ -1,0 +1,27 @@
+Sign in to the Azure Portal.
+
+Navigate to Virtual Machines → click Create → Azure Virtual Machine.
+
+Basics Tab:
+
+ Subscription: Select your Azure subscription.
+
+ Resource Group: Create or choose an existing one.
+
+ VM Name: Enter a unique name.
+
+ Region: Choose closest to Pune (e.g., Central India).
+
+ Image: Select OS (Windows Server, Ubuntu, etc.).
+
+ Size: Pick based on CPU/RAM needs.
+
+ Authentication: Choose Password or SSH key.
+
+Disks Tab: Select OS disk type (Standard SSD, Premium SSD).
+
+Networking Tab: Configure virtual network, subnet, and public IP.
+
+Management Tab: Enable monitoring, auto-shutdown if needed.
+
+Review + Create: Validate settings → click Create
