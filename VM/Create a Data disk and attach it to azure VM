@@ -2,6 +2,7 @@ Go to Azure Portal → Navigate to Virtual Machines → Select your VM.
 
 In the VM settings, click Disks.
 
+
 Click + Add data disk.
 
 Choose Create disk (for a new disk) or Select existing disk.
