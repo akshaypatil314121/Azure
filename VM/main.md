@@ -9,7 +9,7 @@ This document provides step-by-step Standard Operating Procedures (SOPs) for com
 - Navigate to **Virtual Machines** → **Create**.
 - Fill in **Basics, Disks, Networking, Management, Monitoring, Advanced, Tags**.
 - Click **Review + Create** → **Create**.
-- (docs/How to create a Azure VM.md)
+- [Detailed steps here](docs/How%20to%20create%20a%20Azure%20VM.md)
 
 ---
 
