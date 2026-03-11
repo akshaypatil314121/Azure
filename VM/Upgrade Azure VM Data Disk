@@ -1,0 +1,45 @@
+# SOP: Upgrade Azure VM Data Disk
+**Premium SSD (LRS) → Premium SSD v2 (LRS)**
+
+## Purpose
+This document describes the simple steps to upgrade an Azure VM **data disk** from **Premium SSD (LRS)** to **Premium SSD v2 (LRS)**.
+
+> Note: This applies only to **data disks**, not OS disks.
+
+---
+
+## Step 1: Stop the Virtual Machine
+1. Log in to the **Azure Portal**
+2. Navigate to **Virtual Machines**
+3. Select the required VM
+4. Click **Stop**
+5. Wait until the VM status shows **Stopped (deallocated)**
+
+---
+
+## Step 2: Change the Disk Type
+1. Open the **Virtual Machine**
+2. Go to **Disks**
+3. Select the required **Data Disk**
+4. Click **Configuration / Size + performance**
+5. Change the **Disk type** to:
+6. Click **Save**
+
+---
+
+## Step 3: Start the Virtual Machine
+1. Navigate back to the **Virtual Machine**
+2. Click **Start**
+3. Confirm the VM is running successfully
+
+---
+
+## Completion
+✅ The data disk has been successfully upgraded to **Premium SSD v2 (LRS)**.
+
+---
+
+## Notes
+- VM downtime is required during the change
+- Ensure a to take a snapshot before procced to this
+- disable the host catching as None 
