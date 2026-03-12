@@ -1,0 +1,80 @@
+# Terraform vs Ansible
+
+## Overview
+Terraform and Ansible are popular DevOps automation tools, but they are used for **different purposes**.  
+Terraform focuses on **infrastructure provisioning**, while Ansible focuses on **configuration management and automation**.
+
+---
+
+## Key Difference (Simple)
+- **Terraform** → Creates infrastructure
+- **Ansible** → Configures infrastructure
+
+---
+
+## What is Terraform?
+Terraform is an **Infrastructure as Code (IaC)** tool used to provision and manage cloud resources.
+
+### Terraform is used for:
+- Creating Azure Virtual Machines
+- Creating VNets, Subnets, NSGs
+- Creating Disks, Load Balancers, Storage
+- Managing infrastructure lifecycle
+
+### Key Features:
+- Declarative language (HCL)
+- Maintains a **state file (tfstate)**
+- Supports multi‑cloud (Azure, AWS, GCP)
+- Detects infrastructure drift
+
+---
+
+## What is Ansible?
+Ansible is a **configuration management and automation** tool used after infrastructure is created.
+
+### Ansible is used for:
+- Installing software (SQL, IIS, Apache)
+- OS configuration and hardening
+- Patching servers
+- Application deployment
+- Day‑to‑day operational automation
+
+### Key Features:
+- Uses YAML playbooks
+- Agentless (uses SSH / WinRM)
+- No state file
+- Strong orchestration capabilities
+
+---
+
+## Terraform vs Ansible Comparison
+
+| Feature | Terraform | Ansible |
+|------|----------|---------|
+| Tool Type | Infrastructure as Code | Configuration Management |
+| Main Purpose | Provision infrastructure | Configure infrastructure |
+| Language | HCL | YAML |
+| Approach | Declarative | Imperative |
+| State Management | Yes (tfstate) | No |
+| Best Used For | Day‑0 provisioning | Day‑1 / Day‑2 operations |
+
+---
+
+## Real‑World Azure Example
+
+### Terraform
+- Create Azure VM
+- Attach OS and Data Disks
+- Configure Networking
+
+### Ansible
+- Install SQL Server
+- Configure firewall rules
+- Apply OS patches
+
+---
+
+## How They Work Together
+Best practice is to use **both tools together**:
+
+``
