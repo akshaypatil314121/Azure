@@ -57,7 +57,6 @@ Ansible is a **configuration management and automation** tool used after infrast
 | Approach | Declarative | Imperative |
 | State Management | Yes (tfstate) | No |
 | Best Used For | Day‑0 provisioning | Day‑1 / Day‑2 operations |
-
 ---
 
 ## Real‑World Azure Example
