@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SOP – Introduction to Azure Managed Disks</title>
+  <title>SOP – Add and Attach Data Disk to Azure Windows VM</title>
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -23,8 +23,13 @@
       color: #365F91;
       margin-top: 20px;
     }
-    ul {
+    ul, ol {
       margin-left: 20px;
+    }
+    code {
+      background-color: #f4f4f4;
+      padding: 4px 6px;
+      border-radius: 4px;
     }
     .box {
       background-color: #f9f9f9;
@@ -43,97 +48,106 @@
 
 <body>
 
-<h1>SOP: Introduction to Azure Managed Disks and Data Disks for Virtual Machines</h1>
+<h1>SOP: Add and Attach an Additional Data Disk to an Existing Azure Windows VM</h1>
 
 <h2>1.0 Objective</h2>
 <div class="box">
-  <p>
-    This SOP provides an introduction to <strong>Azure Managed Disks</strong> and explains:
-  </p>
+  <p>This SOP explains how to:</p>
   <ul>
-    <li>The difference between OS disks and data disks</li>
-    <li>When and why additional data disks are required</li>
-    <li>Available Azure managed disk types</li>
-    <li>The importance of <strong>IOPS</strong> and <strong>Throughput</strong></li>
+    <li>Create an Azure managed data disk</li>
+    <li>Attach the disk to an existing Windows Virtual Machine</li>
+    <li>Initialize and format the disk at the OS level</li>
+    <li>Make the disk available for application data storage</li>
   </ul>
 </div>
 
 <h2>2.0 Scope</h2>
 <p>
-This SOP applies to <strong>Azure Virtual Machines (Windows and Linux)</strong> where additional
-storage is required to host application or workload data.
+This procedure applies to <strong>Azure Windows Virtual Machines</strong> where additional
+storage is required for application or workload data.
 </p>
 
-<h2>3.0 Azure Managed Disks Overview</h2>
-
-<h3>3.1 OS Disk</h3>
+<h2>3.0 Prerequisites</h2>
 <ul>
-  <li>Every Azure Virtual Machine is created with an <strong>OS disk</strong>.</li>
-  <li>The OS disk contains operating system files and configurations.</li>
-  <li>It is not recommended to store application or workload data on the OS disk.</li>
+  <li>An existing Azure Windows Virtual Machine</li>
+  <li>Contributor or higher access to the Azure subscription</li>
+  <li>RDP access to the Windows VM</li>
+  <li>VM must be in <strong>Running</strong> state</li>
 </ul>
 
-<h3>3.2 Data Disks</h3>
-<ul>
-  <li>Azure allows creation of additional <strong>managed data disks</strong>.</li>
-  <li>Data disks are separate Azure resources that can be attached to VMs.</li>
-  <li>They are recommended for storing application data, databases, and logs.</li>
-</ul>
+<h2>4.0 Create and Attach Data Disk (Azure Portal)</h2>
 
-<div class="note">
-  ✅ Best Practice: Always store application and workload data on separate data disks
-  instead of the OS disk.
-</div>
+<h3>4.1 Navigate to Disks</h3>
+<ol>
+  <li>Log in to the <strong>Azure Portal</strong>.</li>
+  <li>Go to <strong>Virtual Machines</strong>.</li>
+  <li>Select the target <strong>Windows VM</strong>.</li>
+  <li>Under <strong>Settings</strong>, click <strong>Disks</strong>.</li>
+</ol>
 
-<h2>4.0 Types of Azure Managed Disks</h2>
-<p>Azure provides multiple managed disk types based on performance and cost:</p>
-
-<ul>
-  <li><strong>Standard HDD</strong> – Low cost, suitable for minimal I/O workloads</li>
-  <li><strong>Standard SSD</strong> – Balanced performance for lightweight applications</li>
-  <li><strong>Premium SSD</strong> – High performance, recommended for production workloads</li>
-  <li><strong>Ultra Disk</strong> – Highest performance, ideal for enterprise and database workloads</li>
-</ul>
-
-<p>
-Each disk type differs in maximum size, IOPS, throughput, and cost.
-</p>
-
-<h2>5.0 Understanding IOPS</h2>
-<p>
-<strong>IOPS (Input/Output Operations Per Second)</strong> represents the number of read and write
-operations a disk can perform per second.
-</p>
+<h3>4.2 Create and Attach New Data Disk</h3>
+<ol>
+  <li>Under <strong>Data disks</strong>, click <strong>Create and attach a new disk</strong>.</li>
+  <li>Configure the disk:</li>
+</ol>
 
 <ul>
-  <li>Database workloads generate frequent read/write operations</li>
-  <li>Low IOPS can create performance bottlenecks</li>
-  <li>High‑transaction systems require disks with higher IOPS</li>
+  <li><strong>LUN:</strong> 0</li>
+  <li><strong>Disk name:</strong> vm01-datadisk</li>
+  <li><strong>Disk type:</strong> Premium SSD</li>
+  <li><strong>Disk size:</strong> 8 GB</li>
 </ul>
 
-<h2>6.0 Understanding Throughput</h2>
-<p>
-<strong>Throughput</strong> refers to the amount of data that can be transferred per second (MB/s).
-</p>
-
-<ul>
-  <li>Critical for workloads handling large files</li>
-  <li>Examples: video uploads, backups, large media content</li>
-  <li>Higher throughput enables faster data transfer</li>
-</ul>
-
-<h2>7.0 Disk Selection Considerations</h2>
-<ul>
-  <li>Type of workload</li>
-  <li>IOPS requirements</li>
-  <li>Throughput requirements</li>
-  <li>Cost implications</li>
-</ul>
+<ol start="3">
+  <li>Click <strong>Apply</strong>.</li>
+</ol>
 
 <div class="box">
-  This SOP provides foundational knowledge required before creating and attaching
-  data disks to Azure Virtual Machines.
+  ✅ Azure creates the managed disk and attaches it to the Virtual Machine.
 </div>
+
+<h2>5.0 Initialize Disk on Windows OS</h2>
+
+<h3>5.1 Open Disk Management</h3>
+<ol>
+  <li>RDP into the Windows VM.</li>
+  <li>Open <strong>Server Manager</strong>.</li>
+  <li>Navigate to <strong>File and Storage Services → Disks</strong>.</li>
+</ol>
+
+<h3>5.2 Initialize the Disk</h3>
+<ol>
+  <li>The new disk appears as <strong>Unknown / Not Initialized</strong>.</li>
+  <li>Right‑click the disk and select <strong>Initialize Disk</strong>.</li>
+  <li>Click <strong>OK</strong> to confirm.</li>
+</ol>
+
+<h3>5.3 Create New Volume</h3>
+<ol>
+  <li>Right‑click unallocated space and select <strong>New Volume</strong>.</li>
+  <li>Accept default settings.</li>
+  <li>Assign a drive letter (e.g., <strong>E:</strong>).</li>
+  <li>Provide a volume label.</li>
+  <li>Complete the wizard.</li>
+</ol>
+
+<h2>6.0 Verification</h2>
+<ol>
+  <li>Open <strong>File Explorer</strong> on the server.</li>
+  <li>Verify the new drive is visible (e.g., E:).</li>
+  <li>Confirm the disk is accessible and ready for use.</li>
+</ol>
+
+<div class="box">
+  ✅ The data disk is successfully attached and available for application data storage.
+</div>
+
+<h2>7.0 Best Practices</h2>
+<ul>
+  <li>Store application and workload data on data disks, not OS disk</li>
+  <li>Choose disk type based on IOPS and throughput requirements</li>
+  <li>Data disks can also be created during VM provisioning</li>
+</ul>
 
 <hr>
 <p><em>Document Owner: Akshay</em></p>
