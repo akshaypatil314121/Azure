@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>C Drive Disk Space Cleanup SOP</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 40px;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1 {
+      color: #2F5496;
+      border-bottom: 2px solid #2F5496;
+      padding-bottom: 5px;
+    }
+    h2 {
+      color: #1F4E79;
+      margin-top: 30px;
+    }
+    h3 {
+      color: #365F91;
+      margin-top: 20px;
+    }
+    code {
+      background-color: #f4f4f4;
+      padding: 3px 6px;
+      border-radius: 4px;
+    }
+    .box {
+      background-color: #f9f9f9;
+      border-left: 4px solid #2F5496;
+      padding: 15px;
+      margin-top: 15px;
+    }
+    .warning {
+      background-color: #fff4f4;
+      border-left: 4px solid #c00000;
+    }
+    ul {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>C: Drive Disk Space Cleanup – Windows Servers SOP</h1>
+
+<h2>1.0 Objectives</h2>
+<div class="box">
+  <p>
+    This document provides <strong>step-by-step instructions</strong> for listing and
+    performing methods to clear disk space on the <strong>C:\ drive</strong>
+    for Windows servers.
+  </p>
+</div>
+
+<h2>2.0 Technical Steps</h2>
+<h3>Steps for Mitigating OS (C:) Drive Space Issues</h3>
+
+<ul>
+  <li><strong>Step 1:</strong> Log in to the server on which the <em>Low Space</em> alert was triggered.</li>
+  <li><strong>Step 2:</strong> Navigate to the <strong>C:\ drive</strong> and perform
+      <strong>Disk Cleanup</strong> (basic and system files).</li>
+</ul>
+
+<h3>Pre‑Requisites</h3>
+<div class="box warning">
+  <p>
+    If Disk Cleanup is not enabled by default (Windows Server 2008 and 2012),
+    the Windows feature <strong>"Desktop Experience"</strong> must be installed.
+  </p>
+  <p>
+    <strong>Note:</strong> Installing Desktop Experience requires a <strong>server reboot</strong>.
+    Downtime approval must be obtained from the customer, and reboot must be performed
+    under an approved change as per process.
+  </p>
+</div>
+
+<h2>2.1 Install the "Desktop Experience"</h2>
+<ol>
+  <li>Open <strong>Server Manager</strong> from the Start menu.</li>
+  <li>Right‑click on <strong>Features</strong> and select <strong>Add Features</strong>.</li>
+  <li>Select <strong>Desktop Experience</strong>. When prompted, click
+      <strong>Add Required Features</strong>.</li>
+  <li>Click <strong>Next</strong> once the feature is selected.</li>
+  <li>Click <strong>Install</strong> and wait for completion. Reboot the server when prompted.</li>
+</ol>
+
+<h2>2.2 Steps for Disk Cleanup</h2>
+<ol>
+  <li>
+    Right‑click on the <strong>C:\ drive</strong>, select <strong>Properties</strong>,
+    then click <strong>Disk Cleanup</strong>.
+    <br><br>
+    <strong>Note:</strong> Disk Cleanup is not available by default on Windows Server 2008 and 2012
+    unless Desktop Experience is installed. It is available by default on later versions.
+  </li>
+  <li>Wait for the Disk Cleanup tool to scan available cleanup categories.</li>
+  <li>Select required categories and click <strong>OK</strong> to clean them.</li>
+  <li>For Windows Server 2016 and later, click <strong>Clean up system files</strong>.</li>
+  <li>Allow the tool to scan for additional system-related categories.</li>
+  <li>Select the required system categories and click <strong>OK</strong> to start cleanup.</li>
+</ol>
+
+<div class="box warning">
+  <p>
+    <strong>Important:</strong> Do not delete <code>pagefile.sys</code>.
+    This is a critical system file and deleting it may crash the server.
+  </p>
+</div>
+
+<h2>2.3 Clear CCM Cache</h2>
+<ol>
+  <li>
+    Navigate to the path below and sort folders by
+    <strong>Date Modified</strong> (ascending order):
+  </li>
+</ol>
+
+<code>C:\Windows\ccmcache</code>
+
+<ul>
+  <li>Keep folders from the <strong>last 30 days</strong>.</li>
+  <li>Delete older folders.</li>
+</ul>
+
+<p>
+If sufficient space is recovered, further steps are not required.
+Otherwise, continue with the next steps.
+</p>
+
+<h2>2.3 WinSxS Cleanup</h2>
+<ul>
+  <li>The <strong>WinSxS</strong> folder stores Windows update files and component metadata.</li>
+</ul>
+
+<code>C:\Windows\WinSxS</code>
+
+<p>Run the following command from an elevated Command Prompt:</p>
+
+<code>dism.exe /online /Cleanup-Image /StartComponentCleanup</code>
+
+<h2>2.4 Clear Unnecessary Data from Users</h2>
+<ol>
+  <li>Identify user profiles older than <strong>30 days</strong>.</li>
+  <li>Navigate to the following path:</li>
+</ol>
+
+<code>C:\Users</code>
+
+<ol start="3">
+  <li>Open the specific user folder.</li>
+  <li>
+    Review the following folders and delete files older than 30 days:
+    <ul>
+      <li>Desktop</li>
+      <li>Documents</li>
+      <li>Downloads</li>
+    </ul>
+  </li>
+</ol>
+
+<hr>
+<p><em>Document Owner: Akshay</em></p>
+
+</body>
+</html>
