@@ -1,1 +1,147 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TSC AKS – Node Not Ready SOP</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 40px;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1 {
+      color: #2F5496;
+      border-bottom: 2px solid #2F5496;
+      padding-bottom: 5px;
+    }
+    h2 {
+      color: #1F4E79;
+      margin-top: 30px;
+    }
+    code {
+      background-color: #f4f4f4;
+      padding: 3px 6px;
+      border-radius: 4px;
+    }
+    .box {
+      background-color: #f9f9f9;
+      border-left: 4px solid #2F5496;
+      padding: 15px;
+      margin-top: 15px;
+    }
+    .warning {
+      background-color: #fff4f4;
+      border-left: 4px solid #c00000;
+    }
+    ul {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>TSC: AKS – Node Not Ready Count</h1>
+
+<div class="box">
+  <p><strong>Reference Ticket:</strong> INC0655030</p>
+  <p><strong>Purpose:</strong> This SOP provides the procedure to investigate and validate AKS node
+  <em>NotReady</em> conditions and determine the required remediation.</p>
+</div>
+
+<h2>1. Identify the Affected Node</h2>
+<ul>
+  <li>From the incident short description, copy the <strong>node name</strong>.</li>
+  <li>Extract the <strong>VMSS name</strong> from the node name.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<code>aks-compute-44764838-vmss</code>
+
+<h2>2. Locate the AKS Cluster</h2>
+<ul>
+  <li>Navigate to the Azure <strong>Resource Group</strong> associated with the node.</li>
+  <li>Identify the cluster resource group in the format:</li>
+</ul>
+
+<code>MC_&lt;resourcegroup&gt;_&lt;clustername&gt;_&lt;region&gt;</code>
+
+<p><strong>Example:</strong></p>
+<code>MC_OPS-SHD-AKS-EU2-P_OPS-SHD-AKS-EU2-P_eastus2</code>
+
+<p>From the above, the cluster name is:</p>
+<code>OPS-SHD-AKS-EU2-P</code>
+
+<h2>3. Validate Node Pool and Cluster Status</h2>
+<ul>
+  <li>Open the AKS cluster in the Azure Portal.</li>
+  <li>Navigate to <strong>Node Pools</strong> and confirm all instances are healthy.</li>
+  <li>Go to <strong>Diagnose and Solve Problems → Node Health</strong> to review detailed node status.</li>
+</ul>
+
+<h2>4. Verify VMSS Instance Status</h2>
+<ul>
+  <li>Open the VMSS corresponding to the affected node.</li>
+  <li>Go to the <strong>Instances</strong> tab.</li>
+  <li>Verify the instance status is <strong>Running</strong>.</li>
+</ul>
+
+<h2>5. Check Activity Log for Automatic Remediation</h2>
+<ul>
+  <li>Open the VMSS resource.</li>
+  <li>Navigate to <strong>Activity Log</strong>.</li>
+  <li>Review events related to:</li>
+</ul>
+<ul>
+  <li>Node eviction</li>
+  <li>VMSS instance deletion</li>
+  <li>Autoscaling or replacement actions</li>
+</ul>
+
+<h2>6. Validate Node Status Using kubectl</h2>
+<ul>
+  <li>Log in to the jump server:</li>
+</ul>
+<code>OPSEU2TERM001P</code>
+
+<ul>
+  <li>Check available contexts:</li>
+</ul>
+<code>kubectl config get-contexts</code>
+
+<ul>
+  <li>Switch to the correct cluster context:</li>
+</ul>
+<code>kubectl config use-context &lt;ClusterName&gt;</code>
+
+<p><strong>Example:</strong></p>
+<code>kubectl config use-context ops-shd-aks-eu2-p</code>
+
+<ul>
+  <li>Verify node status:</li>
+</ul>
+<code>kubectl get nodes</code>
+
+<h2>7. Final Validation & Closure</h2>
+<ul>
+  <li>If all <strong>aks-compute</strong> nodes are in <strong>Ready</strong> state and functioning normally,
+      the issue can be considered resolved.</li>
+  <li>Since the node pool is configured for <strong>autoscaling</strong>, VMSS instance replacement is
+      expected behavior.</li>
+</ul>
+
+<div class="box warning">
+  <p>
+    If any node continues to remain <strong>NotReady</strong> or repeated failures are observed,
+    engage the <strong>AKS SME</strong> team for further investigation.
+  </p>
+</div>
+
+<hr>
+<p><em>Document Owner: Akshay</em></p>
+
+</body>
+</html>
+``
+
