@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SOP – Introduction to Azure Managed Disks</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 40px;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1 {
+      color: #2F5496;
+      border-bottom: 2px solid #2F5496;
+      padding-bottom: 6px;
+    }
+    h2 {
+      color: #1F4E79;
+      margin-top: 30px;
+    }
+    h3 {
+      color: #365F91;
+      margin-top: 20px;
+    }
+    ul {
+      margin-left: 20px;
+    }
+    .box {
+      background-color: #f9f9f9;
+      border-left: 4px solid #2F5496;
+      padding: 15px;
+      margin: 15px 0;
+    }
+    .note {
+      background-color: #fffbe6;
+      border-left: 4px solid #f1c232;
+      padding: 12px;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>SOP: Introduction to Azure Managed Disks and Data Disks for Virtual Machines</h1>
+
+<h2>1.0 Objective</h2>
+<div class="box">
+  <p>
+    This SOP provides an introduction to <strong>Azure Managed Disks</strong> and explains:
+  </p>
+  <ul>
+    <li>The difference between OS disks and data disks</li>
+    <li>When and why additional data disks are required</li>
+    <li>Available Azure managed disk types</li>
+    <li>The importance of <strong>IOPS</strong> and <strong>Throughput</strong></li>
+  </ul>
+</div>
+
+<h2>2.0 Scope</h2>
+<p>
+This SOP applies to <strong>Azure Virtual Machines (Windows and Linux)</strong> where additional
+storage is required to host application or workload data.
+</p>
+
+<h2>3.0 Azure Managed Disks Overview</h2>
+
+<h3>3.1 OS Disk</h3>
+<ul>
+  <li>Every Azure Virtual Machine is created with an <strong>OS disk</strong>.</li>
+  <li>The OS disk contains operating system files and configurations.</li>
+  <li>It is not recommended to store application or workload data on the OS disk.</li>
+</ul>
+
+<h3>3.2 Data Disks</h3>
+<ul>
+  <li>Azure allows creation of additional <strong>managed data disks</strong>.</li>
+  <li>Data disks are separate Azure resources that can be attached to VMs.</li>
+  <li>They are recommended for storing application data, databases, and logs.</li>
+</ul>
+
+<div class="note">
+  ✅ Best Practice: Always store application and workload data on separate data disks
+  instead of the OS disk.
+</div>
+
+<h2>4.0 Types of Azure Managed Disks</h2>
+<p>Azure provides multiple managed disk types based on performance and cost:</p>
+
+<ul>
+  <li><strong>Standard HDD</strong> – Low cost, suitable for minimal I/O workloads</li>
+  <li><strong>Standard SSD</strong> – Balanced performance for lightweight applications</li>
+  <li><strong>Premium SSD</strong> – High performance, recommended for production workloads</li>
+  <li><strong>Ultra Disk</strong> – Highest performance, ideal for enterprise and database workloads</li>
+</ul>
+
+<p>
+Each disk type differs in maximum size, IOPS, throughput, and cost.
+</p>
+
+<h2>5.0 Understanding IOPS</h2>
+<p>
+<strong>IOPS (Input/Output Operations Per Second)</strong> represents the number of read and write
+operations a disk can perform per second.
+</p>
+
+<ul>
+  <li>Database workloads generate frequent read/write operations</li>
+  <li>Low IOPS can create performance bottlenecks</li>
+  <li>High‑transaction systems require disks with higher IOPS</li>
+</ul>
+
+<h2>6.0 Understanding Throughput</h2>
+<p>
+<strong>Throughput</strong> refers to the amount of data that can be transferred per second (MB/s).
+</p>
+
+<ul>
+  <li>Critical for workloads handling large files</li>
+  <li>Examples: video uploads, backups, large media content</li>
+  <li>Higher throughput enables faster data transfer</li>
+</ul>
+
+<h2>7.0 Disk Selection Considerations</h2>
+<ul>
+  <li>Type of workload</li>
+  <li>IOPS requirements</li>
+  <li>Throughput requirements</li>
+  <li>Cost implications</li>
+</ul>
+
+<div class="box">
+  This SOP provides foundational knowledge required before creating and attaching
+  data disks to Azure Virtual Machines.
+</div>
+
+<hr>
+<p><em>Document Owner: Akshay</em></p>
+
+</body>
+</html>
