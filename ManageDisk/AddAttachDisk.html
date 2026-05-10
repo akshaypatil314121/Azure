@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SOP – Add and Attach Data Disk to Azure Windows VM</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 40px;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1 {
+      color: #2F5496;
+      border-bottom: 2px solid #2F5496;
+      padding-bottom: 6px;
+    }
+    h2 {
+      color: #1F4E79;
+      margin-top: 30px;
+    }
+    h3 {
+      color: #365F91;
+      margin-top: 20px;
+    }
+    ul, ol {
+      margin-left: 20px;
+    }
+    code {
+      background-color: #f4f4f4;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+    .box {
+      background-color: #f9f9f9;
+      border-left: 4px solid #2F5496;
+      padding: 15px;
+      margin: 15px 0;
+    }
+    .note {
+      background-color: #fffbe6;
+      border-left: 4px solid #f1c232;
+      padding: 12px;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>SOP: Add and Attach an Additional Data Disk to an Existing Azure Windows VM</h1>
+
+<h2>1.0 Objective</h2>
+<div class="box">
+  <p>This SOP explains how to:</p>
+  <ul>
+    <li>Create an Azure managed data disk</li>
+    <li>Attach the disk to an existing Windows Virtual Machine</li>
+    <li>Initialize and format the disk at the OS level</li>
+    <li>Make the disk available for application data storage</li>
+  </ul>
+</div>
+
+<h2>2.0 Scope</h2>
+<p>
+This procedure applies to <strong>Azure Windows Virtual Machines</strong> where additional
+storage is required for application or workload data.
+</p>
+
+<h2>3.0 Prerequisites</h2>
+<ul>
+  <li>An existing Azure Windows Virtual Machine</li>
+  <li>Contributor or higher access to the Azure subscription</li>
+  <li>RDP access to the Windows VM</li>
+  <li>VM must be in <strong>Running</strong> state</li>
+</ul>
+
+<h2>4.0 Create and Attach Data Disk (Azure Portal)</h2>
+
+<h3>4.1 Navigate to Disks</h3>
+<ol>
+  <li>Log in to the <strong>Azure Portal</strong>.</li>
+  <li>Go to <strong>Virtual Machines</strong>.</li>
+  <li>Select the target <strong>Windows VM</strong>.</li>
+  <li>Under <strong>Settings</strong>, click <strong>Disks</strong>.</li>
+</ol>
+
+<h3>4.2 Create and Attach New Data Disk</h3>
+<ol>
+  <li>Under <strong>Data disks</strong>, click <strong>Create and attach a new disk</strong>.</li>
+  <li>Configure the disk:</li>
+</ol>
+
+<ul>
+  <li><strong>LUN:</strong> 0</li>
+  <li><strong>Disk name:</strong> vm01-datadisk</li>
+  <li><strong>Disk type:</strong> Premium SSD</li>
+  <li><strong>Disk size:</strong> 8 GB</li>
+</ul>
+
+<ol start="3">
+  <li>Click <strong>Apply</strong>.</li>
+</ol>
+
+<div class="box">
+  ✅ Azure creates the managed disk and attaches it to the Virtual Machine.
+</div>
+
+<h2>5.0 Initialize Disk on Windows OS</h2>
+
+<h3>5.1 Open Disk Management</h3>
+<ol>
+  <li>RDP into the Windows VM.</li>
+  <li>Open <strong>Server Manager</strong>.</li>
+  <li>Navigate to <strong>File and Storage Services → Disks</strong>.</li>
+</ol>
+
+<h3>5.2 Initialize the Disk</h3>
+<ol>
+  <li>The new disk appears as <strong>Unknown / Not Initialized</strong>.</li>
+  <li>Right‑click the disk and select <strong>Initialize Disk</strong>.</li>
+  <li>Click <strong>OK</strong> to confirm.</li>
+</ol>
+
+<h3>5.3 Create New Volume</h3>
+<ol>
+  <li>Right‑click unallocated space and select <strong>New Volume</strong>.</li>
+  <li>Accept default settings.</li>
+  <li>Assign a drive letter (e.g., <strong>E:</strong>).</li>
+  <li>Provide a volume label.</li>
+  <li>Complete the wizard.</li>
+</ol>
+
+<h2>6.0 Verification</h2>
+<ol>
+  <li>Open <strong>File Explorer</strong> on the server.</li>
+  <li>Verify the new drive is visible (e.g., E:).</li>
+  <li>Confirm the disk is accessible and ready for use.</li>
+</ol>
+
+<div class="box">
+  ✅ The data disk is successfully attached and available for application data storage.
+</div>
+
+<h2>7.0 Best Practices</h2>
+<ul>
+  <li>Store application and workload data on data disks, not OS disk</li>
+  <li>Choose disk type based on IOPS and throughput requirements</li>
+  <li>Data disks can also be created during VM provisioning</li>
+</ul>
+
+<hr>
+<p><em>Document Owner: Akshay</em></p>
+
+</body>
+</html>
