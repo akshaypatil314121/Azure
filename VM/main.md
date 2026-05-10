@@ -12,7 +12,7 @@ This document provides step-by-step Standard Operating Procedures (SOPs) for com
 - [Detailed steps here](docs/How-to-create-a-Azure-VM.md)
 
 Full SOP is available here:
-👉 [Download SOP](Virtual machine.docx)
+👉 [Download SOP](./virtual machine.docx)
 
 
 ---
