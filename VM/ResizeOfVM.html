@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SOP – Resize Azure Virtual Machine</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 40px;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1 {
+      color: #2F5496;
+      border-bottom: 2px solid #2F5496;
+      padding-bottom: 6px;
+    }
+    h2 {
+      color: #1F4E79;
+      margin-top: 30px;
+    }
+    h3 {
+      color: #365F91;
+      margin-top: 20px;
+    }
+    code {
+      background-color: #f4f4f4;
+      padding: 3px 6px;
+      border-radius: 4px;
+    }
+    .box {
+      background-color: #f9f9f9;
+      border-left: 4px solid #2F5496;
+      padding: 15px;
+      margin: 15px 0;
+    }
+    .note {
+      background-color: #fffbe6;
+      border-left: 4px solid #f1c232;
+      padding: 12px;
+      margin-top: 10px;
+    }
+    ul {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>SOP: Resize Azure Virtual Machine and Connect via RDP</h1>
+
+<h2>4.0 Resize the Virtual Machine</h2>
+
+<h3>4.1 Navigate to VM Size Settings</h3>
+<ol>
+  <li>Log in to the <strong>Azure Portal</strong>.</li>
+  <li>Navigate to <strong>Virtual Machines</strong>.</li>
+  <li>Select the <strong>target Virtual Machine</strong>.</li>
+  <li>From the left-hand menu, go to:</li>
+</ol>
+
+<code>Availability + Scale → Size</code>
+
+<h3>4.2 Select New VM Size</h3>
+<ol>
+  <li>Select <strong>Standard B2s</strong>:</li>
+</ol>
+
+<ul>
+  <li>2 vCPUs</li>
+  <li>4 GB RAM</li>
+</ul>
+
+<ol start="2">
+  <li>Click <strong>Resize</strong>.</li>
+  <li>Confirm the resize operation.</li>
+</ol>
+
+<div class="box">
+  ✅ The resize process is simple and completes within a short time.
+</div>
+
+<div class="note">
+  <strong>Note:</strong> The updated VM size may take a few minutes to reflect.
+  Use the <strong>Refresh</strong> option if the change is not immediately visible.
+</div>
+
+<hr>
+
+<h2>5.0 Post‑Resize Validation</h2>
+<ol>
+  <li>Navigate back to the <strong>Overview</strong> tab of the Virtual Machine.</li>
+  <li>Verify the <strong>VM size</strong> shows as <code>Standard B2s</code>.</li>
+  <li>Confirm the <strong>VM status</strong> is <strong>Running</strong>.</li>
+</ol>
+
+<hr>
+
+<h2>6.0 Connect to VM Using RDP</h2>
+
+<h3>6.1 Download RDP File</h3>
+<ol>
+  <li>On the VM <strong>Overview</strong> page, click <strong>Connect</strong>.</li>
+  <li>Select <strong>RDP</strong>.</li>
+  <li>Download the <strong>RDP file</strong>.</li>
+  <li>Open the RDP file from the <strong>Downloads</strong> folder.</li>
+</ol>
+
+<h3>6.2 Establish RDP Connection</h3>
+<ol>
+  <li>Click <strong>Connect</strong>.</li>
+  <li>Enter the <strong>username and password</strong> configured during VM creation.</li>
+  <li>Accept the security prompt.</li>
+  <li>Wait for the remote session to initialize.</li>
+</ol>
+
+<div class="box">
+  ✅ After resizing, the RDP connection should complete successfully and open
+  a <strong>Windows Server</strong> session.
+</div>
+
+<hr>
+<p><em>Document Owner: Akshay</em></p>
+
+</body>
+</html>
