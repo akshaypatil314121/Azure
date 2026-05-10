@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SOP – Linux Package Management</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 40px;
+      line-height: 1.6;
+      color: #333;
+      background-color: #ffffff;
+    }
+    h1 {
+      color: #2F5496;
+      border-bottom: 2px solid #2F5496;
+      padding-bottom: 6px;
+    }
+    h2 {
+      color: #1F4E79;
+      margin-top: 30px;
+    }
+    h3 {
+      color: #365F91;
+      margin-top: 20px;
+    }
+    ul, ol {
+      margin-left: 20px;
+    }
+    code {
+      background-color: #f4f4f4;
+      padding: 4px 6px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .box {
+      background-color: #f9f9f9;
+      border-left: 4px solid #2F5496;
+      padding: 15px;
+      margin: 15px 0;
+    }
+    .note {
+      background-color: #fffbe6;
+      border-left: 4px solid #f1c232;
+      padding: 12px;
+      margin: 15px 0;
+    }
+    .warning {
+      background-color: #fff4f4;
+      border-left: 4px solid #c00000;
+      padding: 12px;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>SOP: Linux Package Management using YUM, DNF, RPM, and APT</h1>
+
+<h2>1.0 Objective</h2>
+<div class="box">
+  <ul>
+    <li>Understand Linux package management concepts</li>
+    <li>Install, remove, update, and upgrade software packages</li>
+    <li>Understand update vs upgrade</li>
+    <li>Perform rollback using history</li>
+    <li>Use YUM, DNF, RPM, and APT effectively</li>
+  </ul>
+</div>
+
+<h2>2.0 Scope</h2>
+<p>
+This SOP applies to:
+</p>
+<ul>
+  <li>RHEL / CentOS / Rocky / Alma Linux (YUM, DNF, RPM)</li>
+  <li>Debian-based distributions such as Ubuntu and Kali Linux (APT)</li>
+</ul>
+
+<h2>3.0 What is Package Management?</h2>
+<p>
+Package management is the process of managing software packages on a Linux system, including:
+</p>
+<ul>
+  <li>Installing packages</li>
+  <li>Uninstalling packages</li>
+  <li>Updating packages</li>
+  <li>Upgrading packages</li>
+  <li>Viewing package information</li>
+  <li>Handling dependencies</li>
+</ul>
+
+<h2>4.0 Package Management Tools</h2>
+
+<h3>4.1 YUM (Yellowdog Updater Modified)</h3>
+<ul>
+  <li>Used in older RHEL/CentOS versions</li>
+  <li>Automatically resolves dependencies</li>
+  <li>Installs packages from repositories or RPM files</li>
+</ul>
+
+<h3>4.2 DNF (Dandified YUM)</h3>
+<ul>
+  <li>Modern replacement for YUM</li>
+  <li>Used in RHEL 8 and later</li>
+  <li>Faster and more reliable dependency handling</li>
+</ul>
+
+<h3>4.3 RPM (Red Hat Package Manager)</h3>
+<ul>
+  <li>Low-level package management tool</li>
+  <li>Does not resolve dependencies automatically</li>
+  <li>Used mainly for querying and manual installs</li>
+</ul>
+
+<h3>4.4 APT (Advanced Packaging Tool)</h3>
+<ul>
+  <li>Used in Debian-based distributions</li>
+  <li>Manages dependencies automatically</li>
+</ul>
+
+<h2>5.0 Installing Packages</h2>
+
+<h3>Using YUM</h3>
+<code>sudo yum install nginx</code>
+
+<h3>Auto-confirm Installation</h3>
+<code>sudo yum install nginx -y</code>
+
+<h3>Verify Installed Package</h3>
+<code>nginx -v</code>
+
+<h2>6.0 Removing Packages</h2>
+<code>sudo yum remove nginx</code>
+
+<div class="note">
+✅ Dependencies are removed automatically during uninstall.
+</div>
+
+<h2>7.0 Update vs Upgrade</h2>
+
+<h3>Update</h3>
+<ul>
+  <li>Keeps older packages</li>
+  <li>Allows rollback</li>
+</ul>
+<code>sudo yum update nginx</code>
+
+<h3>Upgrade</h3>
+<ul>
+  <li>Removes old package version</li>
+  <li>Installs new version</li>
+  <li>No rollback</li>
+</ul>
+<code>sudo yum upgrade nginx</code>
+
+<div class="warning">
+⚠️ Update keeps old versions, Upgrade removes them.
+</div>
+
+<h2>8.0 Check Available Updates</h2>
+<code>sudo yum check-update</code>
+
+<h2>9.0 Package History and Rollback</h2>
+
+<h3>View History</h3>
+<code>sudo yum history</code>
+
+<h3>Undo (Rollback)</h3>
+<code>sudo yum history undo &lt;ID&gt;</code>
+
+<h3>Redo</h3>
+<code>sudo yum history redo &lt;ID&gt;</code>
+
+<h2>10.0 RPM Commands</h2>
+
+<h3>Install RPM</h3>
+<code>rpm -ivh package-name.rpm</code>
+
+<h3>Remove RPM</h3>
+<code>rpm -e package-name</code>
+
+<h3>Query Installed Packages</h3>
+<code>rpm -qa</code>
+
+<h3>Check Package Info</h3>
+<code>rpm -qi nginx</code>
+
+<h3>List Package Files</h3>
+<code>rpm -ql nginx</code>
+
+<h2>11.0 DNF Commands</h2>
+<code>dnf list available</code><br><br>
+<code>dnf list installed</code><br><br>
+<code>sudo dnf install httpd -y</code><br><br>
+<code>sudo dnf remove httpd</code>
+
+<h2>12.0 APT Commands (Ubuntu)</h2>
+<code>sudo apt install nginx</code><br><br>
+<code>sudo apt remove nginx</code><br><br>
+<code>sudo apt autoremove</code>
+
+<h2>13.0 Key Learning Points</h2>
+<ul>
+  <li>YUM/DNF handle dependencies automatically</li>
+  <li>RPM is best for querying and manual installs</li>
+  <li>Rollback is possible using YUM/DNF history</li>
+  <li>Choose the tool based on Linux distribution</li>
+</ul>
+
+<h2>14.0 Conclusion</h2>
+<p>
+Linux package management is a critical system administration skill that enables administrators to
+maintain stability, control versions, and manage software efficiently.
+</p>
+
+<hr>
+<p><em>Document Owner: Akshay</em></p>
+
+</body>
+</html>
